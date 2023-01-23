@@ -67,7 +67,7 @@
 
   };
 
-  void receive_data::GetDataBytes(uint8_t* array, size_t array_size) {
+  void receive_data::PickOutDataBytes(uint8_t* array, size_t array_size) {
     for(int i = 0; i < array_size; i++) {
       if (i > DATA_BYTES_SIZE) {
         return;

@@ -2,9 +2,9 @@
 #define RECEIVE_DATA_HH
 
 
-#define RECEIVE_BYTES_SIZE 10 //受信するデータ列のバイト数
+#define RECEIVE_BYTES_SIZE 10 //受信する電文のバイト数(非データ部を含む)
 #define RECEIVE_BYTES_SIZE_OFFSET -1
-#define DATA_BYTES_SIZE RECEIVE_BYTES_SIZE - 2
+#define DATA_BYTES_SIZE RECEIVE_BYTES_SIZE - 2 //受信する電文のデータ部のみのバイト数
 
 
 class receive_data {
@@ -29,7 +29,7 @@ class receive_data {
     bool UART_Rx_Read();
     // bool UART_Rx_Read(receive_data&);
 
-    void GetDataBytes(uint8_t*, size_t);
+    void PickOutDataBytes(uint8_t*, size_t);
 };
 
 

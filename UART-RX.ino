@@ -35,7 +35,7 @@ void loop() {
   if (result == true) {
     Serial.println("receive success");
     uint8_t dataBytes[DATA_BYTES_SIZE];
-    RxData.GetDataBytes(dataBytes, DATA_BYTES_SIZE);
+    RxData.PickOutDataBytes(dataBytes, DATA_BYTES_SIZE);
     for (int i = 0; i < DATA_BYTES_SIZE; i++) {
       Serial.println(dataBytes[i]);
     }
