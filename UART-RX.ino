@@ -5,14 +5,42 @@ receive_data RxData;
 void setup(){
     pinMode(LED_BUILTIN , OUTPUT);
     Serial1.begin(9600);
+    Serial.begin(9600);
     digitalWrite(LED_BUILTIN , LOW);
+    Serial.println("setup finished");
 };
 
 void loop() {
-  while(Serial1.available() == 10);//受信バッファに10バイト溜まるまで待つ
+  while(1){
+    while(Serial1.available() >= 0){
+      uint8_t receiveData = Serial1.read();
+      if(receiveData == 0x01){
+        digitalWrite(LED_BUILTIN , HIGH);
+      }
+      else{
+        digitalWrite(LED_BUILTIN , LOW);
+      }
+    }
+  }
+  while (1)
+  {
+    if (Serial1.available() > 0) {
+      uint8_t RxByte = Serial1.read();
+      Serial.print("receive: ");
+      Serial.println(RxByte);
+    }
+  }
+
   bool result = RxData.UART_Rx_Read();
   if (result == true) {
-    
+    Serial.println("receive success");
+    uint8_t dataBytes[DATA_BYTES_SIZE];
+    RxData.GetDataBytes(dataBytes, DATA_BYTES_SIZE);
+    for (int i = 0; i < DATA_BYTES_SIZE; i++) {
+      Serial.println(dataBytes[i]);
+    }
+  } else {
+    Serial.println("receive failed");
   }
 
 
