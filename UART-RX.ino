@@ -30,7 +30,9 @@ void loop() {
       Serial.println(RxByte);
     }
   }
+//ここまでデバッグ
 
+//ここからメイン
   bool result = RxData.UART_Rx_Read();
   if (result == true) {
     Serial.println("receive success");

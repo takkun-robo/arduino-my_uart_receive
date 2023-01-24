@@ -29,7 +29,7 @@ class receive_data {
     bool UART_Rx_Read();
     // bool UART_Rx_Read(receive_data&);
 
-    void PickOutDataBytes(uint8_t*, size_t);
+    void PickOutDataBytes(uint8_t* array, size_t array_size);
 };
 
 
